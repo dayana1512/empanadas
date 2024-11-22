@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Juego de Scratch</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFF8E7;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100'%3E%3Cpath d='M20,50 Q50,10 100,50 Q150,90 180,50 Q150,10 100,50 Q50,90 20,50 Z' fill='%23F2D2A9' stroke='%23D2691E' stroke-width='4'/%3E%3Cpath d='M40,50 Q70,20 100,50 Q130,80 160,50' fill='none' stroke='%238B4513' stroke-width='3' stroke-dasharray='5,5'/%3E%3Ccircle cx='70' cy='40' r='5' fill='%23FF6347'/%3E%3Ccircle cx='100' cy='60' r='5' fill='%234CAF50'/%3E%3Ccircle cx='130' cy='40' r='5' fill='%23FFA500'/%3E%3C/svg%3E");
+    background-size: 200px 100px;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.background-empanadas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.background-empanada {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100'%3E%3Cpath d='M20,50 Q50,10 100,50 Q150,90 180,50 Q150,10 100,50 Q50,90 20,50 Z' fill='%23F2D2A9' stroke='%23D2691E' stroke-width='4'/%3E%3Cpath d='M40,50 Q70,20 100,50 Q130,80 160,50' fill='none' stroke='%238B4513' stroke-width='3' stroke-dasharray='5,5'/%3E%3Ccircle cx='70' cy='40' r='5' fill='%23FF6347'/%3E%3Ccircle cx='100' cy='60' r='5' fill='%234CAF50'/%3E%3Ccircle cx='130' cy='40' r='5' fill='%23FFA500'/%3E%3C/svg%3E");
+    background-size: cover;
+    animation: float 10s infinite ease-in-out;
+    opacity: 0.3;
+}
+
+header {
+    background-color: rgba(210, 105, 30, 0.9);
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+nav {
+    background-color: rgba(244, 164, 96, 0.9);
+    padding: 0.5em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: rgb(20, 19, 19);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2em;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.scratch-container,
+.youtube-container {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+}
+
+footer {
+    background-color: rgba(210, 105, 30, 0.9);
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+<body>
+    <div class="background-empanadas">
+        <!-- Las empanadas de fondo se generarán con JavaScript -->
+    </div>
+
+    <header>
+        <h1>🥟 VideoJuego de Scratch 🥟</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section>
+            <h2>Juego en Scratch</h2>
+            <div class="scratch-container">
+                <iframe src="https://scratch.mit.edu/projects/1095488874/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>© 2024 Empanadas Deliciosas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function createBackgroundEmpanadas() {
+            // El mismo código JavaScript para generar empanadas de fondo
+        }
+
+        createBackgroundEmpanadas();
+    </script>
+</body>
+</html>

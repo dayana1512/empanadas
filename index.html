@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empanadas Deliciosas - Animadas</title>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFF8E7;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100'%3E%3Cpath d='M20,50 Q50,10 100,50 Q150,90 180,50 Q150,10 100,50 Q50,90 20,50 Z' fill='%23F2D2A9' stroke='%23D2691E' stroke-width='4'/%3E%3Cpath d='M40,50 Q70,20 100,50 Q130,80 160,50' fill='none' stroke='%238B4513' stroke-width='3' stroke-dasharray='5,5'/%3E%3Ccircle cx='70' cy='40' r='5' fill='%23FF6347'/%3E%3Ccircle cx='100' cy='60' r='5' fill='%234CAF50'/%3E%3Ccircle cx='130' cy='40' r='5' fill='%23FFA500'/%3E%3C/svg%3E");
+            background-size: 200px 100px;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .background-empanadas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .background-empanada {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100'%3E%3Cpath d='M20,50 Q50,10 100,50 Q150,90 180,50 Q150,10 100,50 Q50,90 20,50 Z' fill='%23F2D2A9' stroke='%23D2691E' stroke-width='4'/%3E%3Cpath d='M40,50 Q70,20 100,50 Q130,80 160,50' fill='none' stroke='%238B4513' stroke-width='3' stroke-dasharray='5,5'/%3E%3Ccircle cx='70' cy='40' r='5' fill='%23FF6347'/%3E%3Ccircle cx='100' cy='60' r='5' fill='%234CAF50'/%3E%3Ccircle cx='130' cy='40' r='5' fill='%23FFA500'/%3E%3C/svg%3E");
+            background-size: cover;
+            animation: float 10s infinite ease-in-out;
+            opacity: 0.3;
+        }
+
+        header {
+            background-color: rgba(210, 105, 30, 0.9);
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            background-color: rgba(244, 164, 96, 0.9);
+            padding: 0.5em;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color:  rgb(20, 19, 19);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2em;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            
+        }
+
+        .catalogo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2em;
+        }
+
+        .empanada {
+            background-color: #FFF;
+            border-radius: 10px;
+            padding: 1em;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .empanada:hover {
+            transform: scale(1.05);
+        }
+
+        .empanada img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .empanada h3 {
+            color: #D2691E;
+        }
+
+        footer {
+            background-color: rgba(210, 105, 30, 0.9);
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .social-media {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+  }
+
+  .social-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .social-icon svg {
+    margin-bottom: 0.5rem;
+  }
+
+  .social-icon span {
+    font-size: 0.9rem;
+  }
+  .servicios-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.servicios-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.servicio-card {
+  background: rgb(94, 95, 94);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hover-effect:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+  background: #e6e7e5;
+  padding: 1.5rem;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  color: #e65100;
+  transition: all 0.3s ease;
+}
+
+.servicio-card:hover .card-icon {
+  background: #fffc67;
+  color: rgb(240, 237, 35);
+}
+
+.card-content h3 {
+  color: #f3eeee;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.service-features li {
+  margin: 0.5rem 0;
+  color: #faf8f8;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 500px) {
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .servicio-card {
+    margin: 1rem 0;
+  }
+}
+.servicios-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.button {
+    display: inline-block;
+    background-color: #F2D2A9;
+    color: #333;
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #DEB887;
+}
+    </style>
+</head>
+<body>
+    <div class="background-empanadas">
+        <!-- Las empanadas de fondo se generarán con JavaScript -->
+    </div>
+
+    <header>
+        <h1>🥟 Empanadas al Toque 🥟</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#tradicionales">Tradicionales</a></li>
+            <li><a href="#veganas">Veganas</a></li>
+            <li><a href="#singluten">Sin Gluten</a></li>
+            <li><a href="#mision-vision">Misión y Visión</a></li>
+            <li><a href="#objetivos">Objetivos</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contáctenos</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        
+        <section id="introduccion">
+          <h2>Bienvenidos</h2>
+          <p>En Empanadas al Toque, transformamos la experiencia de las empanadas con una variedad de sabores que satisfacen todos los gustos. Desde lo tradicional hasta lo innovador, nuestros productos están pensados para ser disfrutados en cualquier ocasión. Nos enorgullece ser una empresa local que combina calidad, sabor y creatividad en cada bocado.</p>
+          <div class="button-container">
+              <a href="videojuego-scratch.html" class="button">VideoJuego </a>
+              <a href="catálogo-de-aplicaciones.html" class="button"> Aplicación</a>
+              <a href="Avatar.html" class="button">Avatar </a>
+              <a href="cuestionario-kahoot.html" class="button">Kahoot </a>
+              <a href="presentacion-canva.html" class="button">Canva </a>
+
+            </div>
+      </section>
+
+        <section id="mision-vision">
+            
+            <h2>Misión</h2>
+            <p>Nuestra misión es ofrecer empanadas de alta calidad con ingredientes frescos y una variedad de sabores únicos, adaptados a los gustos de nuestros clientes. Buscamos ser una opción accesible y deliciosa que forme parte de cada momento especial, ya sea en reuniones familiares, eventos empresariales o simplemente una pausa en el día.</p>
+
+            <h2>Visión</h2>
+            <p>Aspiramos a ser la empresa líder en el mercado de empanadas artesanales a nivel nacional, reconocida por nuestra innovación en sabores y compromiso con la excelencia. Deseamos expandirnos a nuevas ciudades y ser un referente de calidad en el sector de la comida rápida gourmet.</p>
+        </section>
+
+        <section id="objetivos">
+            <h2>Objetivos</h2>
+            <ul>
+                <li>🎯 Ampliar nuestro menú cada trimestre, integrando sabores innovadores y opciones para diferentes estilos de vida.</li>
+                <li>🏪 Abrir nuevos puntos de venta en ciudades estratégicas dentro de los próximos cinco años.</li>
+                <li>🌟 Fortalecer la experiencia del cliente ofreciendo opciones personalizadas y un servicio excepcional.</li>
+                <li>🌱 Implementar prácticas sostenibles que reduzcan nuestro impacto ambiental.</li></ul>
+                <section id="servicios" class="section">
+                    <div class="servicios-header">
+                      <h2>Nuestros Servicios</h2>
+                      <p class="servicios-subtitle">Descubre todas las formas en que podemos deleitarte</p>
+                    </div>
+                  
+                    <div class="servicios-grid">
+                      <div class="servicio-card hover-effect">
+                        <div class="card-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"/>
+                            <path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"/>
+                            <path d="M15 2v5h5"/>
+                          </svg>
+                        </div>
+                        <div class="card-content">
+                          <h3>Pedidos Individuales y por Docena</h3>
+                          <ul class="service-features">
+                            <li>✓ Pedidos individuales frescos</li>
+                            <li>✓ Descuentos por docena</li>
+                            <li>✓ Delivery a domicilio</li>
+                            <li>✓ Packaging especial</li>
+                          </ul>
+                        </div>
+                      </div>
+                  
+                      <div class="servicio-card hover-effect">
+                        <div class="card-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 11v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3"/>
+                            <path d="M12 19H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-3.83"/>
+                            <path d="m3 11 7.77-6.04a2 2 0 0 1 2.46 0L21 11H3Z"/>
+                            <path d="M12.97 19.77 7 15h12.5l-3.75 4.5a2 2 0 0 1-2.78.27Z"/>
+                          </svg>
+                        </div>
+                        <div class="card-content">
+                          <h3>Eventos y Catering</h3>
+                          <ul class="service-features">
+                            <li>✓ Eventos corporativos</li>
+                            <li>✓ Celebraciones especiales</li>
+                            <li>✓ Menús personalizados</li>
+                            <li>✓ Servicio profesional</li>
+                          </ul>
+                        </div>
+                      </div>
+                  
+                      <div class="servicio-card hover-effect">
+                        <div class="card-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4"/>
+                            <path d="M12 2v2"/>
+                            <path d="M12 20v2"/>
+                            <path d="m4.9 4.9 1.4 1.4"/>
+                            <path d="m17.7 17.7 1.4 1.4"/>
+                            <path d="M2 12h2"/>
+                            <path d="M20 12h2"/>
+                            <path d="m6.3 17.7-1.4 1.4"/>
+                            <path d="m19.1 4.9-1.4 1.4"/>
+                          </svg>
+                        </div>
+                        <div class="card-content">
+                          <h3>Sabores de Temporada</h3>
+                          <ul class="service-features">
+                            <li>✓ Ingredientes de estación</li>
+                            <li>✓ Recetas exclusivas</li>
+                            <li>✓ Ediciones limitadas</li>
+                            <li>✓ Sabores únicos</li>
+                          </ul>
+                        </div>
+                      </div>
+                  
+                      <div class="servicio-card hover-effect">
+                        <div class="card-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 22c1.25-.987 2.27-1.975 3.9-2.2a5.56 5.56 0 0 1 3.8.7c1.8 1.1 2.7 1.5 4.3 1.5 1.6 0 2.5-.4 4.3-1.5 1.3-.8 2.6-1 3.8-.7 1.63.225 2.65 1.213 3.9 2.2"/>
+                            <path d="m2 17 .5-.5a5.5 5.5 0 0 1 7.71 0l.29.3.29-.3a5.5 5.5 0 0 1 7.71 0l.5.5"/>
+                            <path d="m2 12 .5-.5a5.5 5.5 0 0 1 7.71 0l.29.3.29-.3a5.5 5.5 0 0 1 7.71 0l.5.5"/>
+                          </svg>
+                        </div>
+                        <div class="card-content">
+                          <h3>Opciones Saludables</h3>
+                          <ul class="service-features">
+                            <li>✓ Opciones vegetarianas</li>
+                            <li>✓ Versiones veganas</li>
+                            <li>✓ Sin gluten</li>
+                            <li>✓ Bajas calorías</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+        </section>
+    <div class="container">
+        <h2>Nuestro Catálogo de Empanadas</h2>
+        <section id="tradicionales" class="catalogo">
+            <div class="empanada">
+                <img src="Empanadas-carne.jpg" alt="Empanada de Carne">
+                <h3>Empanada de Carne</h3>
+                <p>Deliciosa carne picada con cebolla, huevo y especias.</p>
+            </div>
+            <div class="empanada">
+                <img src="EMPANADAS-DE-POLLO.jpg" alt="Empanada de Pollo">
+                <h3>Empanada de Pollo</h3>
+                <p>Jugoso pollo desmenuzado con verduras y un toque de limón.</p>
+            </div>
+            <div class="empanada">
+                <img src="empmexicana.jpg" alt="Empanada Mexicana">
+                <h3>Empanada Mexicana</h3>
+                <p>Combinación clásica de Carne de res,rajas de chile junto con maicitos.</p>
+            </div>
+        </section>
+        <h2>Opciones Veganas</h2>
+        <section id="veganas" class="catalogo">
+            <div class="empanada">
+                <img src="empanadillas-espinacas-y-champinones.jpg" alt="Empanada de Espinaca y Champiñones">
+                <h3>Espinaca y Champiñones</h3>
+                <p>Mezcla cremosa de espinacas y champiñones salteados.</p>
+            </div>
+            <div class="empanada">
+                <img src="empanadas-lentejas.jpeg" alt="Empanada de Lentejas">
+                <h3>Empanada de Lentejas</h3>
+                <p>Relleno nutritivo de lentejas con verduras y especias.</p>
+            </div>
+        </section>
+        <h2>Sin Gluten</h2>
+        <section id="singluten" class="catalogo">
+            <div class="empanada">
+                <img src="Empanadas-queso singluten.jpg" alt="Empanada de Queso Sin Gluten">
+                <h3>Queso Sin Gluten</h3>
+                <p>Mezcla de quesos en una masa libre de gluten.</p>
+            </div>
+            <div class="empanada">
+                <img src="empanadas-carnesin-gluten-1.jpg" alt="Empanada de Carne Sin Gluten">
+                <h3>Carne Sin Gluten</h3>
+                <p>Nuestra clásica empanada de carne en versión sin gluten.</p>
+            </div>
+        </section>
+        <section id="nosotros">
+            <h2>Nosotros</h2>
+            <p>Somos un equipo de apasionados por la gastronomía, comprometidos en reinventar la tradicional
+               empanada. Nuestro proceso de producción es artesanal, cuidando cada detalle para ofrecer
+                productos de calidad, con una fuerte ética de trabajo y un enfoque en la satisfacción del 
+                cliente. Empanadas al Toque nació con el sueño de llevar un trozo de la cocina local a cada 
+                rincón del país.</p>
+        </section>
+
+        <section id="contacto">
+            <h2>Contáctenos</h2>
+  <div class="contact-info">
+    <p>📞 Teléfono: +123 456 7890</p>
+    <p>✉️ Correo: info@empanadasgourmet.com</p>
+    <p>📍 Dirección: Calle de las Delicias 123, Ciudad Gourmet</p>
+    <div class="social-media">
+        <p>Síguenos en nuestras redes sociales:</p>
+        <div class="social-icons">
+          <a href="https://instagram.com/EmpanadasGourmet" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://facebook.com/EmpanadasGourmet" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://twitter.com/EmpanadasGourmet" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+            </svg>
+            <span>Twitter</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    </div>
+    <footer>
+        <p>© 2024 Empanadas Deliciosas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function createBackgroundEmpanadas() {
+            const container = document.querySelector('.background-empanadas');
+            const numberOfEmpanadas = 20;
+
+            for (let i = 0; i < numberOfEmpanadas; i++) {
+                const empanada = document.createElement('div');
+                empanada.classList.add('background-empanada');
+                empanada.style.left = `${Math.random() * 100}vw`;
+                empanada.style.top = `${Math.random() * 100}vh`;
+                empanada.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(empanada);
+            }
+        }
+
+        createBackgroundEmpanadas();
+    </script>
+</body>
+</html>
